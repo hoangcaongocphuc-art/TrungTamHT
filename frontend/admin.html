@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Trung tâm Hỗ trợ Học tập</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Style chung của dự án -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Quill.js CSS (Trình soạn thảo) -->
+    <link
+      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+      rel="stylesheet"
+    />
+    <!-- SweetAlert2 CSS (Thông báo popup) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Tinh chỉnh riêng cho trang admin */
+      body {
+        background-color: #f4f6f9;
+        padding-top: 0;
+      }
+      .admin-navbar {
+        background: linear-gradient(135deg, #0d6efd 0%, #033b8c 100%);
+      }
+      .nav-pills .nav-link.active {
+        background-color: #0d6efd;
+        font-weight: bold;
+      }
+      .nav-pills .nav-link {
+        color: #495057;
+        font-weight: 500;
+      }
+      .ql-editor {
+        min-height: 200px;
+        font-size: 1rem;
+      } /* Chỉnh chiều cao cho ô soạn thảo */
+    </style>
+  </head>
+  <body>
+    <!-- 1. THANH ĐIỀU HƯỚNG (NAVBAR) -->
+    <nav class="navbar navbar-dark admin-navbar shadow-sm mb-4">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="#">⚙️ Admin Panel</a>
+        <div class="d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm"
+            >🏠 Xem Website</a
+          >
+          <button onclick="logout()" class="btn btn-danger btn-sm fw-bold">
+            🚪 Đăng Xuất
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-4 mb-5">
+      <!-- 2. HỆ THỐNG TABS ĐIỀU HƯỚNG -->
+      <ul
+        class="nav nav-pills mb-4 bg-white p-2 rounded shadow-sm"
+        id="adminTabs"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active px-4"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-courses"
+            type="button"
+          >
+            📚 Quản lý Khóa Học
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link px-4"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-news"
+            type="button"
+          >
+            📰 Quản lý Tin Tức
+          </button>
+        </li>
+      </ul>
+
+      <!-- 3. NỘI DUNG CÁC TABS -->
+      <div class="tab-content" id="adminTabsContent">
+        <!-- ========================================== -->
+        <!-- TAB 1: QUẢN LÝ KHÓA HỌC -->
+        <!-- ========================================== -->
+        <div class="tab-pane fade show active" id="tab-courses">
+          <div class="row">
+            <!-- Cột trái: Form thêm -->
+            <div class="col-lg-4 mb-4">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-primary text-white fw-bold">
+                  ➕ Thêm Khóa Học Mới
+                </div>
+                <div class="card-body">
+                  <form id="add-course-form" novalidate>
+                    <!-- Tên khóa học -->
+                    <div class="mb-3">
+                      <label for="title" class="form-label fw-bold"
+                        >Tên khóa học <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="title"
+                        class="form-control"
+                        placeholder="Nhập tên khóa học..."
+                      />
+                      <div class="invalid-feedback" id="title-error">
+                        Tên khóa học không được bỏ trống và phải có ít nhất 5 ký
+                        tự.
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Giảng viên -->
+                      <div class="col-md-6 mb-3">
+                        <label for="instructor" class="form-label fw-bold"
+                          >Giảng viên <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          id="instructor"
+                          class="form-control"
+                          placeholder="VD: ThS. Nguyễn Văn A"
+                        />
+                        <div class="invalid-feedback" id="instructor-error">
+                          Vui lòng nhập tên giảng viên.
+                        </div>
+                      </div>
+
+                      <!-- Học phí -->
+                      <div class="col-md-6 mb-3">
+                        <label for="fee" class="form-label fw-bold"
+                          >Học phí <span class="text-danger">*</span></label
+                        >
+                        <div class="input-group has-validation">
+                          <input
+                            type="text"
+                            id="fee"
+                            class="form-control"
+                            placeholder="VD: 2.500.000"
+                          />
+                          <span class="input-group-text">VNĐ</span>
+                          <div class="invalid-feedback" id="fee-error">
+                            Học phí phải lớn hơn 0 VNĐ.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Ngày khai giảng -->
+                      <div class="col-md-6 mb-3">
+                        <label for="startDate" class="form-label fw-bold"
+                          >Ngày khai giảng dự kiến
+                          <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="date"
+                          id="startDate"
+                          class="form-control"
+                        />
+                        <div class="invalid-feedback" id="startDate-error">
+                          Ngày khai giảng không được là ngày trong quá khứ.
+                        </div>
+                      </div>
+
+                      <!-- Thời lượng -->
+                      <div class="col-md-6 mb-3">
+                        <label for="duration" class="form-label fw-bold"
+                          >Thời lượng <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          id="duration"
+                          class="form-control"
+                          list="duration-options"
+                          placeholder="Chọn hoặc nhập thời lượng..."
+                        />
+                        <datalist id="duration-options">
+                          <option value="1 tháng (12 buổi)"></option>
+                          <option value="2 tháng (24 buổi)"></option>
+                          <option value="3 tháng (36 buổi)"></option>
+                        </datalist>
+                        <div class="invalid-feedback" id="duration-error">
+                          Vui lòng chọn hoặc nhập thời lượng khóa học.
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Lịch học -->
+                    <div class="mb-3">
+                      <label for="schedule" class="form-label fw-bold"
+                        >Lịch học <span class="text-danger">*</span></label
+                      >
+                      <div class="row g-2">
+                        <div class="col-md-4">
+                          <select id="schedule-preset-days" class="form-select">
+                            <option value="">-- Chọn Thứ --</option>
+                            <option value="Thứ 2 - 4 - 6">Thứ 2 - 4 - 6</option>
+                            <option value="Thứ 3 - 5 - 7">Thứ 3 - 5 - 7</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <select id="schedule-preset-time" class="form-select">
+                            <option value="">-- Chọn Ca --</option>
+
+                            <!-- Ca Sáng -->
+                            <option value="Sáng (08:00 - 11:00)">
+                              Sáng (08:00 - 11:00)
+                            </option>
+                            <option value="Sáng (08:30 - 11:30)">
+                              Sáng (08:30 - 11:30)
+                            </option>
+
+                            <!-- Ca Chiều -->
+                            <option value="Chiều (13:30 - 16:30)">
+                              Chiều (13:30 - 16:30)
+                            </option>
+                            <option value="Chiều (14:00 - 17:00)">
+                              Chiều (14:00 - 17:00)
+                            </option>
+
+                            <!-- Ca Tối -->
+                            <option value="Tối (18:00 - 20:30)">
+                              Tối (18:00 - 20:30)
+                            </option>
+                            <option value="Tối (18:30 - 21:00)">
+                              Tối (18:30 - 21:00)
+                            </option>
+                            <option value="Tối (19:00 - 21:30)">
+                              Tối (19:00 - 21:30)
+                            </option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <input
+                            type="text"
+                            id="schedule"
+                            class="form-control"
+                            placeholder="Lịch học hoàn chỉnh..."
+                          />
+                          <div class="invalid-feedback" id="schedule-error">
+                            Vui lòng nhập hoặc chọn lịch học đầy đủ.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Mô tả ngắn -->
+                    <div class="mb-3">
+                      <label for="description" class="form-label fw-bold"
+                        >Mô tả ngắn <span class="text-danger">*</span></label
+                      >
+                      <textarea
+                        id="description"
+                        class="form-control"
+                        rows="2"
+                        placeholder="Tóm tắt nội dung..."
+                      ></textarea>
+                      <div class="invalid-feedback" id="description-error">
+                        Mô tả ngắn phải từ 10 đến 300 ký tự.
+                      </div>
+                    </div>
+
+                    <!-- Quill Editor -->
+                    <div class="mb-3">
+                      <label class="form-label fw-bold"
+                        >Chi tiết chương trình
+                        <span class="text-danger">*</span></label
+                      >
+                      <div
+                        id="course-detail-editor"
+                        class="bg-white border rounded"
+                        style="min-height: 150px"
+                      ></div>
+                      <div
+                        class="invalid-feedback"
+                        id="editor-error"
+                        style="display: none"
+                      >
+                        Nội dung chi tiết khóa học không được bỏ trống.
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      id="btn-submit"
+                      class="btn btn-primary w-100 fw-bold py-2"
+                    >
+                      💾 Lưu Khóa Học
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cột phải: Bảng danh sách -->
+            <div class="col-lg-8">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white fw-bold text-primary">
+                  📋 Danh sách Khóa học
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-striped m-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Tên Khóa Học</th>
+                          <th>Giảng viên</th>
+                          <th>Lịch Học</th>
+                          <th class="text-center" style="width: 120px">
+                            Thao tác
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-course-list">
+                        <!-- Dữ liệu đổ bằng JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: QUẢN LÝ TIN TỨC -->
+        <!-- ========================================== -->
+        <div class="tab-pane fade" id="tab-news">
+          <div class="row">
+            <!-- Cột trái: Form thêm -->
+            <div class="col-lg-5 mb-4">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-success text-white fw-bold">
+                  ✍️ Viết Tin Tức Mới
+                </div>
+                <div class="card-body">
+                  <form id="add-news-form">
+                    <div class="mb-3">
+                      <label class="form-label fw-bold">Tiêu đề bài viết</label>
+                      <input
+                        type="text"
+                        id="news-title"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Tên tác giả</label>
+                        <input
+                          type="text"
+                          id="news-author"
+                          class="form-control"
+                          value="Admin"
+                        />
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold"
+                          >Link ảnh minh họa</label
+                        >
+                        <input
+                          type="text"
+                          id="news-image"
+                          class="form-control"
+                          placeholder="https://..."
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label fw-bold"
+                        >Nội dung bài viết (Quill Editor)</label
+                      >
+                      <!-- Vùng dành cho QuillJS -->
+                      <div id="news-editor" class="bg-white"></div>
+                      <input type="hidden" id="newsContent" />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 fw-bold">
+                      Đăng Bài Viết
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cột phải: Bảng danh sách -->
+            <div class="col-lg-7">
+              <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white fw-bold text-success">
+                  📰 Danh sách Tin tức
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-striped m-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Tiêu đề</th>
+                          <th>Tác giả</th>
+                          <th>Ngày đăng</th>
+                          <th class="text-center" style="width: 120px">
+                            Thao tác
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-news-list">
+                        <!-- Dữ liệu đổ bằng JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Tab Content -->
+    </div>
+    <!-- End Container -->
+
+    <!-- ========================================== -->
+    <!-- CÁC MODAL SỬA DỮ LIỆU (Giữ nguyên cấu trúc, chỉ dọn dẹp class) -->
+    <!-- ========================================== -->
+
+    <!-- Modal Sửa Khóa Học -->
+    <div class="modal fade" id="editCourseModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title fw-bold">✏️ Sửa Khóa Học</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-course-form">
+              <input type="hidden" id="edit-course-id" />
+              <div class="mb-3">
+                <label class="form-label fw-bold">Tên khóa học</label>
+                <input
+                  type="text"
+                  id="edit-title"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label class="form-label fw-bold">Giảng viên</label>
+                  <input
+                    type="text"
+                    id="edit-instructor"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label fw-bold">Thời lượng</label>
+                  <input type="text" id="edit-duration" class="form-control" />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label fw-bold">Học phí</label>
+                  <input type="text" id="edit-fee" class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="edit-startDate" class="form-label fw-bold"
+                  >Ngày khai giảng dự kiến
+                  <span class="text-danger">*</span></label
+                >
+                <input type="date" id="edit-startDate" class="form-control" />
+
+                <!-- Chuẩn bị sẵn thẻ báo lỗi cho Form Sửa -->
+                <div class="invalid-feedback" id="edit-startDate-error">
+                  Ngày khai giảng không được là ngày trong quá khứ.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold">Lịch học</label>
+                <input
+                  type="text"
+                  id="edit-schedule"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold">Mô tả ngắn</label>
+                <textarea
+                  id="edit-description"
+                  class="form-control"
+                  rows="2"
+                  required
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold"
+                  >Nội dung chi tiết (Quill Editor)</label
+                >
+                <!-- Vùng Quill cho Modal Edit Course -->
+                <div id="edit-course-detail-editor" class="bg-white"></div>
+                <input type="hidden" id="edit-detailContent" />
+              </div>
+              <button type="submit" class="btn btn-warning w-100 fw-bold">
+                Lưu Thay Đổi
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Sửa Tin Tức -->
+    <div class="modal fade" id="editNewsModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h5 class="modal-title fw-bold">✏️ Sửa Tin Tức</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-news-form">
+              <input type="hidden" id="edit-news-id" />
+              <div class="mb-3">
+                <label class="form-label fw-bold">Tiêu đề bài viết</label>
+                <input
+                  type="text"
+                  id="edit-news-title"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">Link ảnh minh họa</label>
+                  <input
+                    type="text"
+                    id="edit-news-image"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-bold">Tên tác giả</label>
+                  <input
+                    type="text"
+                    id="edit-news-author"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold"
+                  >Nội dung bài viết (Quill Editor)</label
+                >
+                <!-- Vùng Quill cho Modal Edit News -->
+                <div id="edit-news-editor" class="bg-white"></div>
+                <input type="hidden" id="edit-news-content" />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-info text-white w-100 fw-bold"
+              >
+                Lưu Thay Đổi
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CÁC SCRIPT THƯ VIỆN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+    <!-- File Script của chúng ta -->
+
+    <script src="course-form.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

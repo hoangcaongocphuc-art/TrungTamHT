@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung tâm Học tập cộng đồng</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- HEADER (GỒM TOP BAR + NAVBAR) -->
+    <header class="fixed-top shadow-sm">
+      <!-- 1. TOP ANNOUNCEMENT BAR (CHẠY CHỮ) -->
+      <div
+        class="bg-primary text-white py-2 overflow-hidden position-relative border-bottom border-white border-opacity-10"
+      >
+        <div class="ticker-container">
+          <div class="ticker-text small fw-medium">
+            <span class="badge bg-warning text-dark rounded-pill me-2"
+              >Mới</span
+            >
+            <span
+              >📢 Khai giảng lớp Tin học ứng dụng & Công nghệ số cộng đồng xã
+              Xuân Bắc!</span
+            >
+            <a
+              href="courses.html"
+              class="text-white text-decoration-underline fw-bold ms-2"
+              >Đăng ký ngay ➔</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. NAVBAR CHÍNH -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white border-top">
+        <div class="container">
+          <a class="navbar-brand fw-bold text-primary" href="index.html">
+            <span class="fs-4">🎓 Trung tâm Học tập cộng đồng xã Xuân Bắc</span>
+          </a>
+
+          <button
+            class="navbar-toggler custom-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="toggler-bar top-bar"></span>
+            <span class="toggler-bar middle-bar"></span>
+            <span class="toggler-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto text-end mb-2 mb-lg-0 fw-medium">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Trang chủ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="courses.html">Danh sách Khóa học</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">Tin tức sự kiện</a>
+              </li>
+            </ul>
+            <div class="d-flex justify-content-end mt-2 mt-lg-0 ms-lg-3">
+              <a
+                href="login.html"
+                class="btn btn-outline-primary fw-bold px-4 rounded-pill w-100 text-center"
+                >Đăng nhập Admin</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO BANNER TRANG CHỦ -->
+    <section
+      class="hero-banner text-white pt-5 pb-5 mt-5 position-relative overflow-hidden"
+    >
+      <div class="container py-4 position-relative" style="z-index: 2">
+        <div class="row align-items-center g-5">
+          <!-- CỘT TRÁI: TIÊU ĐỀ & NÚT BẤM -->
+          <div class="col-lg-7">
+            <span
+              class="badge bg-white text-primary px-3 py-2 rounded-pill fw-bold mb-3 d-inline-flex align-items-center shadow-sm"
+            >
+              <span class="animated-icon me-2" style="font-size: 1.2rem"
+                >🎓</span
+              >
+              Nền Tảng Học Tập Hiện Đại
+            </span>
+
+            <h1 class="display-4 fw-bold mb-3 lh-base">
+              Nâng Tầm Tri Thức Cho Tương Lai Của Bạn
+            </h1>
+            <p class="lead mb-4 text-white-50">
+              Cung cấp các khóa học chất lượng cao, lịch học linh hoạt cùng đội
+              ngũ giảng viên giàu kinh nghiệm. Khám phá ngay hôm nay!
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a
+                href="courses.html"
+                class="btn btn-warning btn-lg fw-bold px-4 rounded-pill shadow-sm"
+              >
+                Khám Phá Khóa Học
+              </a>
+              <a
+                href="news.html"
+                class="btn btn-outline-light btn-lg fw-bold px-4 rounded-pill"
+              >
+                Xem Tin Tức
+              </a>
+            </div>
+          </div>
+
+          <!-- CỘT PHẢI: THẺ THỐNG KÊ + KHUNG ẢNH CHẠY LƯỚT -->
+          <div class="col-lg-5 position-relative">
+            <!-- 1. KHUNG ẢNH THỰC TẾ CUỘN LƯỚT (Nằm ở góc trên bên phải) -->
+            <div class="real-photo-card shadow-lg">
+              <div class="photo-track">
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=300"
+                  alt="Lớp học 1"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=300"
+                  alt="Lớp học 2"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=300"
+                  alt="Lớp học 3"
+                />
+                <!-- Lặp lại 3 ảnh để tạo vòng lặp mượt không bị giật -->
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=300"
+                  alt="Lớp học 1"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=300"
+                  alt="Lớp học 2"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=300"
+                  alt="Lớp học 3"
+                />
+              </div>
+            </div>
+
+            <!-- 2. THẺ THỐNG KÊ KÍNH (Lơ lửng phía dưới) -->
+            <div
+              class="glass-card p-4 text-white shadow position-relative"
+              style="z-index: 2"
+            >
+              <h4 class="fw-bold mb-3">Thống Kê Nổi Bật</h4>
+              <div class="row text-center g-3">
+                <div class="col-6">
+                  <div class="p-3 bg-white bg-opacity-10 rounded-3 hover-lift">
+                    <h3 class="fw-bold m-0">50+</h3>
+                    <small class="text-white-50">Khóa học</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 bg-white bg-opacity-10 rounded-3 hover-lift">
+                    <h3 class="fw-bold m-0">1,200+</h3>
+                    <small class="text-white-50">Học viên</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 bg-white bg-opacity-10 rounded-3 hover-lift">
+                    <h3 class="fw-bold m-0">98%</h3>
+                    <small class="text-white-50">Hài lòng</small>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="p-3 bg-white bg-opacity-10 rounded-3 hover-lift">
+                    <h3 class="fw-bold m-0">15+</h3>
+                    <small class="text-white-50">Giảng viên</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION 2: LÝ DO CHỌN TRUNG TÂM -->
+    <section class="bg-light py-5 mb-5">
+      <div class="container py-3">
+        <!-- Tiêu đề Section -->
+        <div class="text-center mb-5">
+          <span class="text-primary fw-bold text-uppercase small"
+            >Giá Trị Cốt Lõi</span
+          >
+          <h2 class="fw-bold text-dark">Trung tâm Hỗ trợ Học tập cộng đồng</h2>
+        </div>
+
+        <div class="row g-4 text-center">
+          <!-- Thẻ 1 -->
+          <div class="col-md-3 col-sm-6">
+            <div
+              class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift bg-white"
+            >
+              <div
+                class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 fs-2 d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px"
+              >
+                🎓
+              </div>
+              <h6 class="fw-bold text-dark mb-2">Học Phí Cộng Đồng</h6>
+              <p class="text-muted small mb-0">
+                Miễn phí hoặc hỗ trợ chi phí tối đa cho người dân địa phương.
+              </p>
+            </div>
+          </div>
+
+          <!-- Thẻ 2 -->
+          <div class="col-md-3 col-sm-6">
+            <div
+              class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift bg-white"
+            >
+              <div
+                class="icon-box bg-success-subtle text-success rounded-circle mx-auto mb-3 fs-2 d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px"
+              >
+                ⏰
+              </div>
+              <h6 class="fw-bold text-dark mb-2">Lịch Học Linh Hoạt</h6>
+              <p class="text-muted small mb-0">
+                Có ca học buổi tối và cuối tuần phù hợp mọi lứa tuổi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Thẻ 3 -->
+          <div class="col-md-3 col-sm-6">
+            <div
+              class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift bg-white"
+            >
+              <div
+                class="icon-box bg-warning-subtle text-warning rounded-circle mx-auto mb-3 fs-2 d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px"
+              >
+                👨‍🏫
+              </div>
+              <h6 class="fw-bold text-dark mb-2">Cầm Tay Chỉ Việc</h6>
+              <p class="text-muted small mb-0">
+                Giảng viên tận tình, hướng dẫn thực hành trực tiếp trên máy
+                tính.
+              </p>
+            </div>
+          </div>
+
+          <!-- Thẻ 4 -->
+          <div class="col-md-3 col-sm-6">
+            <div
+              class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift bg-white"
+            >
+              <div
+                class="icon-box bg-info-subtle text-info rounded-circle mx-auto mb-3 fs-2 d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px"
+              >
+                📜
+              </div>
+              <h6 class="fw-bold text-dark mb-2">Cấp Chứng Nhận</h6>
+              <p class="text-muted small mb-0">
+                Hoàn thành khóa học được cấp chứng nhận chính thức.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION 3: QUY TRÌNH 3 BƯỚC ĐĂNG KÝ -->
+    <section class="container mb-5 py-4">
+      <!-- Tiêu đề Section -->
+      <div class="text-center mb-5">
+        <span class="text-primary fw-bold text-uppercase small"
+          >Đơn Giản & Nhanh Chóng</span
+        >
+        <h2 class="fw-bold text-dark">Quy Trình 3 Bước Tham Gia Khóa Học</h2>
+      </div>
+
+      <div class="row g-4">
+        <!-- Bước 1 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift bg-white"
+          >
+            <div
+              class="step-number bg-primary text-white rounded-circle fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+              style="width: 52px; height: 52px; font-size: 1.3rem"
+            >
+              1
+            </div>
+            <h5 class="fw-bold text-dark mb-2">Chọn Khóa Học</h5>
+            <p class="text-muted small mb-0">
+              Duyệt danh sách các lớp học phù hợp với nhu cầu (Tin học, Nông
+              nghiệp, Kỹ năng số, Ngoại ngữ...).
+            </p>
+          </div>
+        </div>
+
+        <!-- Bước 2 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift bg-white"
+          >
+            <div
+              class="step-number bg-primary text-white rounded-circle fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+              style="width: 52px; height: 52px; font-size: 1.3rem"
+            >
+              2
+            </div>
+            <h5 class="fw-bold text-dark mb-2">Đăng Ký Trực Tuyến</h5>
+            <p class="text-muted small mb-0">
+              Điền họ tên, số điện thoại và chọn ca học mong muốn qua biểu mẫu
+              trực tuyến cực kỳ đơn giản.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bước 3 -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift bg-white"
+          >
+            <div
+              class="step-number bg-success text-white rounded-circle fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+              style="width: 52px; height: 52px; font-size: 1.3rem"
+            >
+              3
+            </div>
+            <h5 class="fw-bold text-dark mb-2">Xác Nhận & Đến Lớp</h5>
+            <p class="text-muted small mb-0">
+              Cán bộ trung tâm sẽ liên hệ xác nhận lịch học. Bạn chỉ cần mang
+              tinh thần học hỏi đến lớp!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION 4: KHÓA HỌC NỔI BẬT -->
+    <section class="container my-5 py-3">
+      <!-- Tiêu đề Section -->
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <span class="text-primary fw-bold text-uppercase small"
+            >Chương Trình Đào Tạo</span
+          >
+          <h2 class="fw-bold text-dark mb-0">Khóa Học Nổi Bật</h2>
+        </div>
+        <a
+          href="courses.html"
+          class="btn btn-outline-primary rounded-pill btn-sm px-3 d-none d-sm-inline-block"
+        >
+          Xem tất cả khóa học ➔
+        </a>
+      </div>
+
+      <!-- Danh sách 3 khóa học đổ từ API -->
+      <div class="row g-4" id="latest-courses">
+        <!-- JavaScript (app.js) sẽ tự động sinh dữ liệu vào đây -->
+      </div>
+
+      <!-- Nút xem thêm trên Mobile -->
+      <div class="text-center mt-3 d-sm-none">
+        <a
+          href="courses.html"
+          class="btn btn-outline-primary rounded-pill w-100 fw-bold"
+        >
+          Xem tất cả khóa học ➔
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 5: TIN TỨC & SỰ KIỆN (LAYOUT TIÊU ĐIỂM + DANH SÁCH BÊN PHẢI) -->
+    <section class="container mb-5 py-4">
+      <!-- Tiêu đề Section -->
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <span class="text-primary fw-bold text-uppercase small"
+            >Cập Nhật Mới Nhất</span
+          >
+          <h2 class="fw-bold text-dark mb-0">Tin Tức & Sự Kiện</h2>
+        </div>
+        <a
+          href="news.html"
+          class="btn btn-outline-primary rounded-pill btn-sm px-3 d-none d-sm-inline-block"
+          >Xem tất cả ➔</a
+        >
+      </div>
+
+      <div class="row g-4">
+        <!-- CỘT TRÁI (COL-LG-7): TIN/SỰ KIỆN TIÊU ĐIỂM LỚN -->
+        <div class="col-lg-7" id="featured-news">
+          <div
+            class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 hover-lift bg-white"
+          >
+            <div class="position-relative">
+              <img
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                class="card-img-top object-fit-cover"
+                style="height: 280px"
+                alt="Sự kiện nổi bật"
+              />
+              <span
+                class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill"
+                >Sự kiện hot</span
+              >
+            </div>
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="text-muted small mb-2">
+                📅 20 Tháng 9, 2026 • 📍 Hội trường Trung tâm
+              </div>
+              <h4 class="card-title fw-bold text-dark mb-3">
+                Lễ Khai Giảng Khóa Học "Kỹ Năng Số Cho Người Dân Địa Phương"
+              </h4>
+              <p class="card-text text-muted">
+                Chương trình nhằm trang bị cho bà con các kỹ năng sử dụng dịch
+                vụ công trực tuyến, thanh toán không dùng tiền mặt và an toàn
+                thông tin trên môi trường mạng.
+              </p>
+              <div
+                class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center"
+              >
+                <span class="badge bg-primary-subtle text-primary"
+                  >Miễn phí đăng ký</span
+                >
+                <a
+                  href="news.html"
+                  class="fw-bold text-primary text-decoration-none"
+                  >Đọc chi tiết ➔</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI (COL-LG-5): DANH SÁCH TIN TỨC DẠNG HÀNG DỌC -->
+        <div class="col-lg-5">
+          <div
+            class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100 d-flex flex-column"
+          >
+            <h5
+              class="fw-bold text-dark px-2 pt-2 pb-3 border-bottom mb-3 d-flex align-items-center gap-2"
+            >
+              <span>📰</span> Tin Tức Mới
+            </h5>
+
+            <div class="d-flex flex-column gap-3 mb-3" id="news-sidebar-list">
+              <!-- Tin nhỏ 1 -->
+              <a
+                href="news.html"
+                class="news-sidebar-item text-decoration-none text-dark d-flex gap-3 align-items-center p-2 rounded-3"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=200&q=80"
+                  class="rounded-3 object-fit-cover flex-shrink-0"
+                  style="width: 85px; height: 75px"
+                  alt="Tin 1"
+                />
+                <div>
+                  <small class="text-muted d-block mb-1">📅 15/09/2026</small>
+                  <h6
+                    class="fw-bold mb-0 text-dark line-clamp-2"
+                    style="font-size: 0.95rem; line-height: 1.4"
+                  >
+                    Thông báo lịch nghỉ lễ và kế hoạch bù giờ lớp Tin học
+                  </h6>
+                </div>
+              </a>
+
+              <!-- Tin nhỏ 2 -->
+              <a
+                href="news.html"
+                class="news-sidebar-item text-decoration-none text-dark d-flex gap-3 align-items-center p-2 rounded-3"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=200&q=80"
+                  class="rounded-3 object-fit-cover flex-shrink-0"
+                  style="width: 85px; height: 75px"
+                  alt="Tin 2"
+                />
+                <div>
+                  <small class="text-muted d-block mb-1">📅 12/09/2026</small>
+                  <h6
+                    class="fw-bold mb-0 text-dark line-clamp-2"
+                    style="font-size: 0.95rem; line-height: 1.4"
+                  >
+                    Trao chứng chỉ cho 50 học viên hoàn thành khóa Ngoại ngữ K12
+                  </h6>
+                </div>
+              </a>
+
+              <!-- Tin nhỏ 3 -->
+              <a
+                href="news.html"
+                class="news-sidebar-item text-decoration-none text-dark d-flex gap-3 align-items-center p-2 rounded-3"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=200&q=80"
+                  class="rounded-3 object-fit-cover flex-shrink-0"
+                  style="width: 85px; height: 75px"
+                  alt="Tin 3"
+                />
+                <div>
+                  <small class="text-muted d-block mb-1">📅 10/09/2026</small>
+                  <h6
+                    class="fw-bold mb-0 text-dark line-clamp-2"
+                    style="font-size: 0.95rem; line-height: 1.4"
+                  >
+                    Tập huấn ứng dụng công nghệ số trong sản xuất nông nghiệp
+                  </h6>
+                </div>
+              </a>
+            </div>
+
+            <!-- Xem thêm ở cuối cột phải -->
+            <div class="mt-auto pt-3 border-top text-center">
+              <a
+                href="news.html"
+                class="text-primary fw-bold text-decoration-none small"
+                >Xem tất cả tin tức ➔</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION 6: BANNER ĐĂNG KÝ TƯ VẤN NHANH -->
+    <section
+      class="bg-primary text-white py-5 position-relative overflow-hidden"
+    >
+      <!-- Họa tiết bóng mờ trang trí nền -->
+      <div
+        class="position-absolute top-0 start-0 w-100 h-100 opacity-10 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle at 10% 20%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 40%
+          );
+        "
+      ></div>
+
+      <div class="container text-center position-relative" style="z-index: 2">
+        <!-- Nhãn phụ -->
+        <span
+          class="badge bg-white text-primary fw-bold px-3 py-2 rounded-pill mb-3 shadow-sm"
+        >
+          💬 Hỗ Trợ Trực Tiếp
+        </span>
+
+        <!-- Tiêu đề chính -->
+        <h2 class="fw-bold mb-3 fs-2">Bạn Cần Tư Vấn Chọn Khóa Học Phù Hợp?</h2>
+        <p
+          class="text-white-50 mb-4 mx-auto"
+          style="max-width: 600px; font-size: 1.05rem"
+        >
+          Chỉ cần để lại số điện thoại, cán bộ trung tâm sẽ gọi điện tư vấn chi
+          tiết và hỗ trợ bạn xếp lớp trong vòng 24h.
+        </p>
+
+        <!-- Biểu mẫu đăng ký nhanh -->
+        <form
+          id="formConsultation"
+          class="row g-2 justify-content-center mx-auto"
+          style="max-width: 520px"
+        >
+          <div class="col-sm-8">
+            <input
+              id="phoneInput"
+              type="tel"
+              class="form-control form-control-lg rounded-pill px-4 border-0 shadow-sm"
+              placeholder="Nhập số điện thoại của bạn..."
+              pattern="[0-9]{10}"
+              title="Vui lòng nhập số điện thoại hợp lệ (10 chữ số)"
+              required
+            />
+          </div>
+          <div class="col-sm-4">
+            <button
+              type="submit"
+              class="btn btn-warning btn-lg rounded-pill fw-bold w-100 shadow-sm text-dark"
+            >
+              Gửi Yêu Cầu
+            </button>
+          </div>
+        </form>
+
+        <!-- Ghi chú bảo mật -->
+        <div
+          class="mt-3 text-white-50 small d-flex align-items-center justify-content-center gap-1"
+        >
+          <span>🔒</span> Thông tin của bạn được bảo mật tuyệt đối.
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- FOOTER TỐI ƯU -->
+    <footer class="bg-dark text-white py-5">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Cột 1: Giới thiệu & Bản đồ (lg-5: rộng hơn) -->
+          <div class="col-lg-5 col-md-12">
+            <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              🎓 TTHTCĐ Xã Xuân Bắc
+            </h5>
+            <p class="text-white-50 small mb-4" style="line-height: 1.6">
+              Trung tâm Học tập cộng đồng xã Xuân Bắc (huyện Xuân Lộc, tỉnh Đồng
+              Nai) là thiết chế giáo dục của xã, nhằm tạo điều kiện cho mọi
+              người dân được học tập suốt đời, góp phần nâng cao dân trí và phát
+              triển kinh tế địa phương.
+            </p>
+            <div class="d-flex gap-2">
+              <a
+                href="#"
+                class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 35px; height: 35px"
+                >📘</a
+              >
+              <a
+                href="#"
+                class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 35px; height: 35px"
+                >🎥</a
+              >
+            </div>
+          </div>
+
+          <!-- Cột 2: Liên kết nhanh (lg-3) -->
+          <div class="col-lg-3 col-md-6">
+            <h5
+              class="fw-bold mb-3 border-bottom border-secondary pb-2 d-inline-block"
+            >
+              Liên kết nhanh
+            </h5>
+            <ul class="list-unstyled d-flex flex-column gap-2 small">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-white-50 text-decoration-none hover-white"
+                  >➔ Trang chủ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="courses.html"
+                  class="text-white-50 text-decoration-none hover-white"
+                  >➔ Danh sách Khóa học</a
+                >
+              </li>
+              <li>
+                <a
+                  href="news.html"
+                  class="text-white-50 text-decoration-none hover-white"
+                  >➔ Tin tức & Thông báo</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white-50 text-decoration-none hover-white"
+                  >➔ Hướng dẫn đăng ký học</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Cột 3: Thông tin liên hệ (lg-4) -->
+          <div class="col-lg-4 col-md-6">
+            <h5
+              class="fw-bold mb-3 border-bottom border-secondary pb-2 d-inline-block"
+            >
+              Liên hệ với chúng tôi
+            </h5>
+            <ul
+              class="list-unstyled d-flex flex-column gap-3 small text-white-50"
+            >
+              <li class="d-flex align-items-start gap-2">
+                <span>📍</span>
+                <span>UBND xã Xuân Bắc, huyện Xuân Lộc, tỉnh Đồng Nai</span>
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <span>📞</span>
+                <span>0901 234 567 (Thầy Nam)</span>
+              </li>
+              <li class="d-flex align-items-center gap-2">
+                <span>✉️</span>
+                <span>tthtcd.xuanbac@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div
+          class="border-top border-secondary mt-5 pt-3 text-center text-white-50 small"
+        >
+          &copy; 2026 Bản quyền thuộc về Trung tâm HTCĐ xã Xuân Bắc.
+          <br class="d-sm-none" />
+          Thiết kế với ❤️ phục vụ cộng đồng.
+        </div>
+      </div>
+    </footer>
+    <!-- FLOATING CONTACT BUTTONS (Góc dưới bên phải) -->
+    <div class="floating-contact">
+      <a
+        href="tel:0901234567"
+        class="btn-float btn-hotline shadow rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+        title="Gọi Hotline"
+      >
+        📞
+      </a>
+      <a
+        href="https://zalo.me/0901234567"
+        target="_blank"
+        class="btn-float btn-zalo shadow rounded-circle d-flex align-items-center justify-content-center text-decoration-none mt-2"
+        title="Chat Zalo"
+      >
+        💬
+      </a>
+    </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
